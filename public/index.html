@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Recovering India Foundation — Member Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0A1628;--blue:#1A4B8C;--accent:#E8A020;--bg:#F4F6FA;--card:#FFFFFF;--border:#DDE3EE;--text:#1A2235;--muted:#6B7A99;--light:#EBF0FB;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.login-split-container{display:flex;min-height:100vh;width:100%}
+.login-left-hero{flex:1.2;background:linear-gradient(135deg,var(--navy) 0%,#112542 50%,var(--blue) 100%);display:flex;flex-direction:column;justify-content:center;padding:80px;color:#fff;position:relative;overflow:hidden}
+.hero-tag{color:var(--accent);text-transform:uppercase;font-size:12px;font-weight:600;letter-spacing:2px;margin-bottom:16px}
+.hero-heading{font-family:'DM Serif Display',serif;font-size:44px;line-height:1.2;margin-bottom:24px}
+.hero-heading span{color:var(--accent)}
+.hero-description{font-size:15px;color:rgba(255,255,255,0.7);line-height:1.8;max-width:520px;margin-bottom:40px}
+.hero-features{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:550px}
+.hf-item{display:flex;gap:12px;align-items:flex-start}
+.hf-icon{background:rgba(255,255,255,0.08);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:14px;flex-shrink:0}
+.login-right-pane{flex:0.9;display:flex;align-items:center;justify-content:center;padding:40px;background:var(--bg)}
+.login-card-v2{background:#fff;border:1px solid var(--border);border-radius:20px;padding:44px;width:100%;max-width:440px;box-shadow:0 15px 35px rgba(10,22,40,0.04)}
+.lc-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);margin-bottom:6px}
+.lc-sub{font-size:13px;color:var(--muted);margin-bottom:32px}
+.lf{margin-bottom:16px}
+.lf label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
+.lf input{width:100%;font-size:14px;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-family:'DM Sans',sans-serif}
+.lf input:focus{outline:none;border-color:var(--blue)}
+.login-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-family:'DM Serif Display',serif;cursor:pointer;margin-top:8px}
+.error-box{background:#FEE2E2;color:#B91C1C;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
+nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.25)}
+.nav-brand{display:flex;align-items:center;gap:12px}
+.nav-logo{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);font-weight:bold}
+.nav-title{font-family:'DM Serif Display',serif;font-size:17px;color:#fff}
+.nav-title span{color:var(--accent)}
+.nav-links{display:flex;gap:4px}
+.nl{background:none;border:none;color:rgba(255,255,255,0.65);font-size:13px;padding:7px 14px;border-radius:7px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.nl:hover,.nl.active{background:rgba(255,255,255,0.12);color:#fff}
+.nav-user{display:flex;align-items:center;gap:10px}
+.user-avatar{width:34px;height:34px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy)}
+.user-name{font-size:13px;color:rgba(255,255,255,0.8)}
+.logout-btn{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-size:12px;padding:5px 12px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif}
+.layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 60px)}
+.sidebar{background:var(--card);border-right:1px solid var(--border);padding:20px 12px;display:flex;flex-direction:column;gap:2px}
+.sidebar-section{font-size:10px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:12px 10px 6px}
+.slink{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:9px;font-size:13px;color:var(--muted);cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.slink:hover{background:var(--light);color:var(--blue)}
+.slink.active{background:var(--light);color:var(--blue);font-weight:500}
+.slink-icon{font-size:16px;width:20px;flex-shrink:0}
+.content{padding:28px 32px;overflow-y:auto}
+.page{display:none}.page.show{display:block}
+.page-header{margin-bottom:24px}
+.page-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy)}
+.page-sub{font-size:13px;color:var(--muted);margin-top:4px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:16px}
+.month-group{margin-bottom:24px}
+.month-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.month-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.weeks-grid-layout{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.week-log-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:14px 16px}
+.wlc-header{font-size:12px;font-weight:600;color:var(--blue);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.wlc-content{font-size:13px;color:var(--muted);line-height:1.5}
+.meeting-card-v2{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;margin-bottom:16px}
+.m2-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:16px;display:flex;justify-content:space-between;align-items:center}
+.m2-title span{font-size:12px;font-family:'DM Sans',sans-serif;font-weight:normal;color:var(--muted)}
+.m2-row{margin-bottom:14px;padding-bottom:14px;border-bottom:1px dashed var(--border)}
+.m2-row:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.m2-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.8px;color:var(--muted);margin-bottom:6px}
+.m2-val{font-size:13px;color:var(--text);line-height:1.6;background:var(--bg);padding:10px 14px;border-radius:8px}
+.form-label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.form-input-box{width:100%;font-size:13px;font-family:'DM Sans',sans-serif;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);margin-bottom:16px;transition:border-color 0.15s}
+.form-input-box:focus{outline:none;border-color:var(--blue)}
+.form-textarea-box{width:100%;font-size:13px;font-family:'DM Sans',sans-serif;padding:11px 14px;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);margin-bottom:16px;min-height:120px;resize:vertical}
+.event-box{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px}
+.event-header-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px}
+.event-tag{font-size:10px;background:#FEF3E2;color:#C07010;font-weight:600;padding:4px 8px;border-radius:6px;text-transform:uppercase}
+.event-title{font-family:'DM Serif Display',serif;font-size:18px;color:var(--navy);margin-bottom:4px}
+.event-details{font-size:12px;color:var(--muted);margin-bottom:12px;display:flex;gap:16px}
+.event-desc{font-size:13px;color:var(--text);line-height:1.6;background:var(--bg);padding:12px;border-radius:8px}
+.disc-post{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;padding:16px}
+.disc-post-top{display:flex;gap:12px}
+.disc-avt{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.disc-post-body{flex:1}
+.disc-post-header{display:flex;align-items:center;gap:8px}
+.disc-author{font-size:13px;font-weight:600}
+.disc-time{font-size:11px;color:var(--muted);margin-left:auto}
+.disc-post-text{font-size:13px;color:var(--muted);line-height:1.7;margin-top:4px}
+.np-textarea{width:100%;font-size:13px;padding:9px 12px;border:1px solid var(--border);border-radius:9px;background:var(--bg);margin-bottom:10px;resize:vertical;min-height:60px}
+.np-btn{background:var(--navy);color:#fff;border:none;padding:9px 20px;border-radius:9px;cursor:pointer}
+#id-card{max-width:420px;margin:0 auto;background:linear-gradient(135deg,#0A1628 0%,#1A4B8C 60%,#0A1628 100%);border-radius:18px;padding:32px;box-shadow:0 20px 60px rgba(10,22,40,0.35)}
+.id-org{font-size:10px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
+.id-org-full{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:24px}
+.id-photo-row{display:flex;align-items:center;gap:18px;margin-bottom:24px}
+.id-photo{width:72px;height:72px;background:rgba(232,160,32,0.2);border:2px solid var(--accent);border-radius:12px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:24px;color:var(--accent)}
+.id-name{font-family:'DM Serif Display',serif;font-size:22px;color:#fff}
+.id-role{font-size:12px;color:rgba(255,255,255,0.55);margin-top:4px}
+.id-divider{border:none;border-top:1px solid rgba(255,255,255,0.1);margin:20px 0}
+.id-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.id-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:3px}
+.id-val{font-size:13px;color:#fff;font-weight:500}
+.id-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#4ADE80;font-weight:600}
+.id-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80}
+.id-code{font-family:monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-top:20px;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;display:flex;justify-content:space-between}
+.goals-grid{display:grid;gap:14px}
+.goal-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;gap:16px;align-items:flex-start}
+.goal-num{width:36px;height:36px;border-radius:10px;background:var(--light);color:var(--blue);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
+.goal-body{flex:1}
+.goal-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:4px}
+.goal-desc{font-size:12px;color:var(--muted);line-height:1.6}
+.tag{font-size:10px;padding:3px 9px;border-radius:20px;font-weight:500;margin-top:8px;display:inline-block}
+.tag-blue{background:var(--light);color:var(--blue)}
+.goal-check{width:22px;height:22px;border-radius:6px;border:2px solid var(--border);flex-shrink:0;margin-top:2px}
+.cf-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:13px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'DM Serif Display',serif;margin-top:4px}
+.alert-success{background:#D1FAE5;color:#065F46;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
+.alert-error{background:#FEE2E2;color:#B91C1C;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
+
+@media (max-width: 768px) {
+  .login-split-container { flex-direction: column; }
+  .login-left-hero { padding: 40px 24px; min-height: 280px; }
+  .hero-heading { font-size: 28px; }
+  .hero-features { grid-template-columns: 1fr; }
+  .layout { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .content { padding: 20px 16px; }
+  .weeks-grid-layout { grid-template-columns: 1fr; }
+  nav { padding: 0 16px; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN PAGE -->
+<div id="login-page" style="display:flex">
+  <div class="login-split-container">
+    <div class="login-left-hero">
+      <div class="hero-tag">Internal Operational Node</div>
+      <h1 class="hero-heading">Recovering India<br><span>Foundation Portal</span></h1>
+      <p class="hero-description">Welcome to the central tracking ecosystem for RIF members. Coordinate campaigns, log objectives, and register reports seamlessly.</p>
+      <div class="hero-features">
+        <div class="hf-item">
+          <div class="hf-icon">🎯</div>
+          <div>
+            <span style="font-size:13px;font-weight:600;display:block;color:#fff">Goal Alignment</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.5)">Track weekly assigned tasks.</span>
+          </div>
+        </div>
+        <div class="hf-item">
+          <div class="hf-icon">📈</div>
+          <div>
+            <span style="font-size:13px;font-weight:600;display:block;color:#fff">Field Analytics</span>
+            <span style="font-size:11px;color:rgba(255,255,255,0.5)">Log data by month and week.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="login-right-pane">
+      <div class="login-card-v2">
+        <div class="lc-title">Sign In</div>
+        <div class="lc-sub">Access your secure member dashboard</div>
+        <div id="login-error" class="error-box">Invalid email or password. Please try again.</div>
+        <div class="lf">
+          <label>Email Address</label>
+          <input type="email" id="login-email" placeholder="member@college.ac.in"/>
+        </div>
+        <div class="lf">
+          <label>Password</label>
+          <input type="password" id="login-password" placeholder="Enter password"/>
+        </div>
+        <button class="login-btn" onclick="doLogin()">Sign In &rarr;</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="main-app" style="display:none">
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">R</div>
+    <div class="nav-title">Recovering India <span>Foundation</span></div>
+  </div>
+  <div class="nav-links">
+    <button class="nl active" onclick="goPage('goals')">Goals</button>
+    <button class="nl" onclick="goPage('workdone')">Work Done</button>
+    <button class="nl" onclick="goPage('meetings')">Team Meetings</button>
+    <button class="nl" onclick="goPage('discussion')">Event Discussions</button>
+    <button class="nl" onclick="goPage('contact')">Contact Us</button>
+    <button class="nl" onclick="goPage('id')">My ID</button>
+  </div>
+  <div class="nav-user">
+    <div class="user-avatar" id="nav-avatar">?</div>
+    <div class="user-name" id="nav-email">Member</div>
+    <button class="logout-btn" onclick="doLogout()">Log Out</button>
+  </div>
+</nav>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-section">My Contributions</div>
+    <button class="slink active" onclick="goPage('goals')"><span class="slink-icon">🎯</span>My Goals</button>
+    <button class="slink" onclick="goPage('workdone')"><span class="slink-icon">✅</span>Work Done</button>
+    <div class="sidebar-section">Club Activity</div>
+    <button class="slink" onclick="goPage('meetings')"><span class="slink-icon">📋</span>Team Meetings</button>
+    <button class="slink" onclick="goPage('discussion')"><span class="slink-icon">💬</span>Event Discussions</button>
+    <div class="sidebar-section">Support & Profile</div>
+    <button class="slink" onclick="goPage('contact')"><span class="slink-icon">📬</span>Contact Us</button>
+    <button class="slink" onclick="goPage('id')"><span class="slink-icon">🪪</span>My ID Card</button>
+  </div>
+
+  <div class="content">
+
+    <!-- GOALS -->
+    <div id="pg-goals" class="page show">
+      <div class="page-header">
+        <div class="page-title">My Goals</div>
+        <div class="page-sub">Current execution guidelines for your operational sector</div>
+      </div>
+      <div class="goals-grid">
+        <div class="goal-item">
+          <div class="goal-num">01</div>
+          <div class="goal-body">
+            <div class="goal-title">Structure Chapter Database Operations</div>
+            <div class="goal-desc">Organize entry metrics parameters across localized tracking nodes.</div>
+            <span class="tag tag-blue">Active Track</span>
+          </div>
+          <div class="goal-check"></div>
+        </div>
+        <div class="goal-item">
+          <div class="goal-num">02</div>
+          <div class="goal-body">
+            <div class="goal-title">Coordinate Regional Awareness Campaigns</div>
+            <div class="goal-desc">Deploy verified outreach modules across district chapters.</div>
+            <span class="tag tag-blue">In Progress</span>
+          </div>
+          <div class="goal-check"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WORK DONE -->
+    <div id="pg-workdone" class="page">
+      <div class="page-header">
+        <div class="page-title">Work Done Registry</div>
+        <div class="page-sub">Weekly log tracks organized by monthly operations</div>
+      </div>
+      <div class="month-group">
+        <div class="month-title">August Operations</div>
+        <div class="weeks-grid-layout">
+          <div class="week-log-card"><div class="wlc-header">Week 1</div><div class="wlc-content">Formulated data frameworks and finalized initial region maps.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 2</div><div class="wlc-content">Conducted preliminary screening criteria parameters across localized tracking loops.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 3</div><div class="wlc-content">Drafted systematic documentation review variables for administrative evaluation.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 4</div><div class="wlc-content">Completed regional asset auditing matrices. Log entries submitted.</div></div>
+        </div>
+      </div>
+      <div class="month-group">
+        <div class="month-title">September Operations</div>
+        <div class="weeks-grid-layout">
+          <div class="week-log-card"><div class="wlc-header">Week 1</div><div class="wlc-content">Established field communication links with district operations teams.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 2</div><div class="wlc-content">Executed core system layout updates based on chapter feedback models.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 3</div><div class="wlc-content">Aggregated local analytics reports to check for data parity points.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 4</div><div class="wlc-content">Completed data intake operations for primary semester trackers.</div></div>
+        </div>
+      </div>
+      <div class="month-group">
+        <div class="month-title">October Operations</div>
+        <div class="weeks-grid-layout">
+          <div class="week-log-card"><div class="wlc-header">Week 1</div><div class="wlc-content">Conducted cross-vertical alignment checks for localized regional boards.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 2</div><div class="wlc-content">Mapped public dataset tracking metrics over interface variable components.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 3</div><div class="wlc-content">Validated structural script accuracy layers across portal view configurations.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 4</div><div class="wlc-content">Finalized mid-term milestone validation criteria scripts.</div></div>
+        </div>
+      </div>
+      <div class="month-group">
+        <div class="month-title">November Operations</div>
+        <div class="weeks-grid-layout">
+          <div class="week-log-card"><div class="wlc-header">Week 1</div><div class="wlc-content">Prepared analytical datasets for incoming administrative sync cycles.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 2</div><div class="wlc-content">Aligned technical dashboard visual parameters with internal instructions.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 3</div><div class="wlc-content">Pending data input logs from field operations.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 4</div><div class="wlc-content">Pending schedule tracking logs.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEETINGS -->
+    <div id="pg-meetings" class="page">
+      <div class="page-header">
+        <div class="page-title">Team Meetings Log</div>
+        <div class="page-sub">Official core session transcripts and operational guidelines</div>
+      </div>
+      <div class="meeting-card-v2">
+        <div class="m2-title">Meeting 1 <span>Date: Nov 1st</span></div>
+        <div class="m2-row">
+          <div class="m2-label">Agendas</div>
+          <div class="m2-val">Awareness drive on financial knowledge update, Tech update, etc.</div>
+        </div>
+        <div class="m2-row">
+          <div class="m2-label">Discussion</div>
+          <div class="m2-val">Deliberated on regional awareness deployment milestones, tech portal system parity, and optimizing information visibility to match organizational objectives during operational audits.</div>
+        </div>
+        <div class="m2-row">
+          <div class="m2-label">Assigned Objectives</div>
+          <div class="m2-val">Deploy verified structural templates across tracking modules, standardize local contact frameworks, and update team data boards for next review.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCUSSIONS -->
+    <div id="pg-discussion" class="page">
+      <div class="page-header">
+        <div class="page-title">Event Discussions</div>
+        <div class="page-sub">Collaborative planning boards for upcoming events</div>
+      </div>
+      <div class="event-box">
+        <div class="event-header-row">
+          <div>
+            <div class="event-title">🚨 National Awareness &amp; Policy Drive 2026</div>
+            <div class="event-details"><span>📅 Date: June 05, 2026</span><span>📍 Location: Main Auditorium</span></div>
+          </div>
+          <span class="event-tag">Next Event</span>
+        </div>
+        <div class="event-desc"><strong>Event Details:</strong> Operational tracks (Awareness, Tech, Research) will gather live to sync field metrics and showcase interactive portal indicators to the senior executive board.</div>
+      </div>
+      <div style="margin-bottom:16px">
+        <textarea id="np-text-field" class="np-textarea" placeholder="Share suggestions or ideas for this event..."></textarea>
+        <button class="np-btn" onclick="submitPost()">Publish Comment</button>
+      </div>
+      <div id="discussion-feed"></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="pg-contact" class="page">
+      <div class="page-header">
+        <div class="page-title">Contact Us</div>
+        <div class="page-sub">Submit feedback or notify technical managers directly</div>
+      </div>
+      <div class="card" style="max-width:600px">
+        <div style="font-size:15px;font-weight:600;margin-bottom:20px;color:var(--navy)">File Support Ticket</div>
+        <label class="form-label">Your Name</label>
+        <input type="text" id="contact-name" class="form-input-box" placeholder="Enter your name..."/>
+        <label class="form-label">Subject</label>
+        <input type="text" id="contact-subject" class="form-input-box" placeholder="Enter the topic or issue..."/>
+        <label class="form-label">Message</label>
+        <textarea id="contact-message" class="form-textarea-box" placeholder="Describe your feedback or issue..."></textarea>
+        <div id="contact-success" class="alert-success">✅ Message sent successfully! We will get back to you soon.</div>
+        <div id="contact-error" class="alert-error">❌ Failed to send. Please try again.</div>
+        <button class="cf-btn" onclick="sendContactForm()">Send Message</button>
+      </div>
+    </div>
+
+    <!-- ID CARD -->
+    <div id="pg-id" class="page">
+      <div class="page-header">
+        <div class="page-title">My Member ID</div>
+        <div class="page-sub">Official identity registry credentials</div>
+      </div>
+      <div style="display:flex;justify-content:center">
+        <div id="id-card">
+          <div class="id-org">Recovering India Foundation</div>
+          <div class="id-org-full">Identity Verification Node · Student Governance Network</div>
+          <div class="id-photo-row">
+            <div class="id-photo">RIF</div>
+            <div>
+              <div class="id-name">Arjun Mehta</div>
+              <div class="id-role">Department: Tech</div>
+            </div>
+          </div>
+          <div class="id-divider"></div>
+          <div class="id-grid">
+            <div><div class="id-label">State</div><div class="id-val">Maharashtra</div></div>
+            <div><div class="id-label">District</div><div class="id-val">Mumbai Suburban</div></div>
+            <div><div class="id-label">Town / City</div><div class="id-val">Powai</div></div>
+            <div><div class="id-label">Contribution Points</div><div class="id-val" style="color:var(--accent);font-weight:600">1,450 Points</div></div>
+            <div><div class="id-label">Member Tenure</div><div class="id-val">Jan 25 - Dec 26</div></div>
+            <div><div class="id-label">Status</div><div class="id-val"><span class="id-status"><span class="id-dot"></span>ACTIVE</span></div></div>
+          </div>
+          <div class="id-code"><span>ID: RIF-MEMBER-2026-892</span><span>VIT Track Node</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ===== EMAILJS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  emailjs.init("GjMw_dDJhLZmuG1E6");
+
+  // Page navigation
+  function goPage(pageKey) {
+    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('show'); });
+    var t = document.getElementById('pg-' + pageKey);
+    if(t) t.classList.add('show');
+    document.querySelectorAll('.nl').forEach(function(b){
+      b.classList.toggle('active', !!(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+pageKey+"'")));
+    });
+    document.querySelectorAll('.slink').forEach(function(b){
+      b.classList.toggle('active', !!(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+pageKey+"'")));
+    });
+  }
+
+  // Contact form send via EmailJS
+  function sendContactForm() {
+    var name    = document.getElementById('contact-name').value.trim()    || 'Member';
+    var subject = document.getElementById('contact-subject').value.trim();
+    var message = document.getElementById('contact-message').value.trim();
+    var success = document.getElementById('contact-success');
+    var errBox  = document.getElementById('contact-error');
+    success.style.display = 'none';
+    errBox.style.display  = 'none';
+    if(!subject || !message){ alert('Please fill in Subject and Message.'); return; }
+    emailjs.send("service_ly6qv6o", "5fjmdym", { name: name, message: subject + '\n\n' + message })
+      .then(function(){
+        success.style.display = 'block';
+        document.getElementById('contact-name').value    = '';
+        document.getElementById('contact-subject').value = '';
+        document.getElementById('contact-message').value = '';
+      })
+      .catch(function(){ errBox.style.display = 'block'; });
+  }
+</script>
+
+<!-- ===== FIREBASE ===== -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, collection, addDoc, getDocs, query, orderBy }
+    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD31ghHzXe09nKDdnSQzg3A_MbyZw5x0pA",
+    authDomain: "rif-portal.firebaseapp.com",
+    projectId: "rif-portal",
+    storageBucket: "rif-portal.firebasestorage.app",
+    messagingSenderId: "898822608497",
+    appId: "1:898822608497:web:d0b64b7c2dc93c6772edd0"
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+
+  window.doLogin = async function() {
+    var email    = document.getElementById('login-email').value.trim();
+    var password = document.getElementById('login-password').value;
+    var errBox   = document.getElementById('login-error');
+    errBox.style.display = 'none';
+    if(!email || !password){ errBox.textContent='Please enter email and password.'; errBox.style.display='block'; return; }
+    try {
+      var result = await signInWithEmailAndPassword(auth, email, password);
+      document.getElementById('nav-email').textContent  = result.user.email;
+      document.getElementById('nav-avatar').textContent = result.user.email[0].toUpperCase();
+      document.getElementById('login-page').style.display = 'none';
+      document.getElementById('main-app').style.display   = 'block';
+      goPage('goals');
+      loadPosts();
+    } catch(e) {
+      errBox.textContent = 'Invalid email or password. Please try again.';
+      errBox.style.display = 'block';
+    }
+  };
+
+  window.doLogout = async function() {
+    await signOut(auth);
+    document.getElementById('main-app').style.display   = 'none';
+    document.getElementById('login-page').style.display = 'flex';
+  };
+
+  window.submitPost = async function() {
+    var txt  = document.getElementById('np-text-field').value.trim();
+    var user = auth.currentUser;
+    if(!txt || !user) return;
+    await addDoc(collection(db, 'posts'), { text: txt, author: user.email, time: new Date().toISOString() });
+    document.getElementById('np-text-field').value = '';
+    loadPosts();
+  };
+
+  async function loadPosts() {
+    var feed = document.getElementById('discussion-feed');
+    if(!feed) return;
+    try {
+      var q        = query(collection(db, 'posts'), orderBy('time', 'desc'));
+      var snapshot = await getDocs(q);
+      feed.innerHTML = '';
+      if(snapshot.empty){ feed.innerHTML='<p style="color:var(--muted);font-size:13px;padding:12px">No posts yet. Be the first to comment!</p>'; return; }
+      snapshot.forEach(function(doc){
+        var d    = doc.data();
+        var post = document.createElement('div');
+        post.className = 'disc-post';
+        post.innerHTML =
+          '<div class="disc-post-top">' +
+          '<div class="disc-avt" style="background:#1a2a4a;color:#fff">' + d.author[0].toUpperCase() + '</div>' +
+          '<div class="disc-post-body">' +
+          '<div class="disc-post-header"><span class="disc-author">' + d.author + '</span><span class="disc-time">' + new Date(d.time).toLocaleDateString('en-IN') + '</span></div>' +
+          '<div class="disc-post-text">' + d.text + '</div>' +
+          '</div></div>';
+        feed.appendChild(post);
+      });
+    } catch(e){ feed.innerHTML='<p style="color:var(--muted);font-size:13px;padding:12px">Could not load posts.</p>'; }
+  }
+
+  onAuthStateChanged(auth, function(user){
+    if(user){
+      document.getElementById('nav-email').textContent  = user.email;
+      document.getElementById('nav-avatar').textContent = user.email[0].toUpperCase();
+      document.getElementById('login-page').style.display = 'none';
+      document.getElementById('main-app').style.display   = 'block';
+      loadPosts();
+    }
+  });
+</script>
+</body>
+</html>
