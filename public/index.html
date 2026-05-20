@@ -19,15 +19,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .hf-item{display:flex;gap:12px;align-items:flex-start}
 .hf-icon{background:rgba(255,255,255,0.08);width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:14px;flex-shrink:0}
 .login-right-pane{flex:0.9;display:flex;align-items:center;justify-content:center;padding:40px;background:var(--bg)}
-.login-card-v2{background:#fff;border:1px solid var(--border);border-radius:20px;padding:44px;width:100%;max-width:440px;box-shadow:0 15px 35px rgba(10,22,40,0.04)}
+.auth-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:44px;width:100%;max-width:440px;box-shadow:0 15px 35px rgba(10,22,40,0.04)}
 .lc-title{font-family:'DM Serif Display',serif;font-size:26px;color:var(--navy);margin-bottom:6px}
-.lc-sub{font-size:13px;color:var(--muted);margin-bottom:32px}
-.lf{margin-bottom:16px}
+.lc-sub{font-size:13px;color:var(--muted);margin-bottom:24px}
+.tab-row{display:flex;gap:0;margin-bottom:28px;border:1.5px solid var(--border);border-radius:10px;overflow:hidden}
+.tab-btn{flex:1;padding:10px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;background:#fff;color:var(--muted);transition:all 0.15s}
+.tab-btn.active{background:var(--navy);color:#fff}
+.lf{margin-bottom:14px}
 .lf label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:6px;text-transform:uppercase}
 .lf input{width:100%;font-size:14px;padding:12px 14px;border:1.5px solid var(--border);border-radius:10px;background:var(--bg);font-family:'DM Sans',sans-serif}
 .lf input:focus{outline:none;border-color:var(--blue)}
-.login-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-family:'DM Serif Display',serif;cursor:pointer;margin-top:8px}
+.auth-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-family:'DM Serif Display',serif;cursor:pointer;margin-top:8px}
+.auth-btn:hover{background:#1a3a6a}
 .error-box{background:#FEE2E2;color:#B91C1C;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
+.success-box{background:#D1FAE5;color:#065F46;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
 nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:60px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.25)}
 .nav-brand{display:flex;align-items:center;gap:12px}
 .nav-logo{width:34px;height:34px;background:var(--accent);border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:16px;color:var(--navy);font-weight:bold}
@@ -38,7 +43,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .nl:hover,.nl.active{background:rgba(255,255,255,0.12);color:#fff}
 .nav-user{display:flex;align-items:center;gap:10px}
 .user-avatar{width:34px;height:34px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--navy)}
-.user-name{font-size:13px;color:rgba(255,255,255,0.8)}
+.user-name{font-size:13px;color:rgba(255,255,255,0.8);max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .logout-btn{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.7);font-size:12px;padding:5px 12px;border-radius:6px;cursor:pointer;font-family:'DM Sans',sans-serif}
 .layout{display:grid;grid-template-columns:230px 1fr;min-height:calc(100vh - 60px)}
 .sidebar{background:var(--card);border-right:1px solid var(--border);padding:20px 12px;display:flex;flex-direction:column;gap:2px}
@@ -79,14 +84,14 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .event-desc{font-size:13px;color:var(--text);line-height:1.6;background:var(--bg);padding:12px;border-radius:8px}
 .disc-post{background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;padding:16px}
 .disc-post-top{display:flex;gap:12px}
-.disc-avt{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600}
+.disc-avt{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;flex-shrink:0}
 .disc-post-body{flex:1}
 .disc-post-header{display:flex;align-items:center;gap:8px}
 .disc-author{font-size:13px;font-weight:600}
 .disc-time{font-size:11px;color:var(--muted);margin-left:auto}
 .disc-post-text{font-size:13px;color:var(--muted);line-height:1.7;margin-top:4px}
-.np-textarea{width:100%;font-size:13px;padding:9px 12px;border:1px solid var(--border);border-radius:9px;background:var(--bg);margin-bottom:10px;resize:vertical;min-height:60px}
-.np-btn{background:var(--navy);color:#fff;border:none;padding:9px 20px;border-radius:9px;cursor:pointer}
+.np-textarea{width:100%;font-size:13px;padding:9px 12px;border:1px solid var(--border);border-radius:9px;background:var(--bg);margin-bottom:10px;resize:vertical;min-height:60px;font-family:'DM Sans',sans-serif}
+.np-btn{background:var(--navy);color:#fff;border:none;padding:9px 20px;border-radius:9px;cursor:pointer;font-family:'DM Sans',sans-serif}
 #id-card{max-width:420px;margin:0 auto;background:linear-gradient(135deg,#0A1628 0%,#1A4B8C 60%,#0A1628 100%);border-radius:18px;padding:32px;box-shadow:0 20px 60px rgba(10,22,40,0.35)}
 .id-org{font-size:10px;letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:6px}
 .id-org-full{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:24px}
@@ -99,7 +104,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .id-label{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:3px}
 .id-val{font-size:13px;color:#fff;font-weight:500}
 .id-status{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:#4ADE80;font-weight:600}
-.id-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80}
+.id-dot{width:7px;height:7px;border-radius:50%;background:#4ADE80;display:inline-block}
 .id-code{font-family:monospace;font-size:10px;color:rgba(255,255,255,0.25);margin-top:20px;border-top:1px solid rgba(255,255,255,0.07);padding-top:14px;display:flex;justify-content:space-between}
 .goals-grid{display:grid;gap:14px}
 .goal-item{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;display:flex;gap:16px;align-items:flex-start}
@@ -113,24 +118,18 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .cf-btn{width:100%;background:var(--navy);color:#fff;border:none;padding:13px;border-radius:10px;font-size:14px;cursor:pointer;font-family:'DM Serif Display',serif;margin-top:4px}
 .alert-success{background:#D1FAE5;color:#065F46;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
 .alert-error{background:#FEE2E2;color:#B91C1C;border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:12px;display:none}
-
-@media (max-width: 768px) {
-  .login-split-container { flex-direction: column; }
-  .login-left-hero { padding: 40px 24px; min-height: 280px; }
-  .hero-heading { font-size: 28px; }
-  .hero-features { grid-template-columns: 1fr; }
-  .layout { grid-template-columns: 1fr; }
-  .sidebar { display: none; }
-  .content { padding: 20px 16px; }
-  .weeks-grid-layout { grid-template-columns: 1fr; }
-  nav { padding: 0 16px; }
-  .nav-links { display: none; }
-}
+.profile-setup{background:var(--card);border:1px solid var(--accent);border-radius:14px;padding:22px;margin-bottom:20px}
+.profile-setup-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.profile-setup-sub{font-size:12px;color:var(--muted);margin-bottom:16px}
+.profile-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pf-input{width:100%;font-size:13px;padding:10px 12px;border:1.5px solid var(--border);border-radius:8px;background:var(--bg);font-family:'DM Sans',sans-serif}
+.pf-input:focus{outline:none;border-color:var(--blue)}
+.pf-save-btn{background:var(--accent);color:var(--navy);border:none;padding:10px 20px;border-radius:8px;font-weight:600;cursor:pointer;font-size:13px;margin-top:12px}
 </style>
 </head>
 <body>
 
-<!-- LOGIN PAGE -->
+<!-- LOGIN / REGISTER PAGE -->
 <div id="login-page" style="display:flex">
   <div class="login-split-container">
     <div class="login-left-hero">
@@ -155,19 +154,36 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
       </div>
     </div>
     <div class="login-right-pane">
-      <div class="login-card-v2">
-        <div class="lc-title">Sign In</div>
-        <div class="lc-sub">Access your secure member dashboard</div>
-        <div id="login-error" class="error-box">Invalid email or password. Please try again.</div>
-        <div class="lf">
-          <label>Email Address</label>
-          <input type="email" id="login-email" placeholder="member@college.ac.in"/>
+      <div class="auth-card">
+        <div class="lc-title">Member Portal</div>
+        <div class="lc-sub">Sign in or create your account</div>
+
+        <!-- TABS -->
+        <div class="tab-row">
+          <button class="tab-btn active" onclick="switchTab('login')">Sign In</button>
+          <button class="tab-btn" onclick="switchTab('register')">Register</button>
         </div>
-        <div class="lf">
-          <label>Password</label>
-          <input type="password" id="login-password" placeholder="Enter password"/>
+
+        <!-- ERROR / SUCCESS -->
+        <div id="auth-error" class="error-box"></div>
+        <div id="auth-success" class="success-box"></div>
+
+        <!-- LOGIN FORM -->
+        <div id="form-login">
+          <div class="lf"><label>Email Address</label><input type="email" id="login-email" placeholder="you@email.com"/></div>
+          <div class="lf"><label>Password</label><input type="password" id="login-password" placeholder="Enter password"/></div>
+          <button class="auth-btn" onclick="doLogin()">Sign In &rarr;</button>
         </div>
-        <button class="login-btn" onclick="doLogin()">Sign In &rarr;</button>
+
+        <!-- REGISTER FORM -->
+        <div id="form-register" style="display:none">
+          <div class="lf"><label>Full Name</label><input type="text" id="reg-name" placeholder="Your full name"/></div>
+          <div class="lf"><label>Email Address</label><input type="email" id="reg-email" placeholder="you@email.com"/></div>
+          <div class="lf"><label>Password (min 6 characters)</label><input type="password" id="reg-password" placeholder="Create password"/></div>
+          <div class="lf"><label>Department</label><input type="text" id="reg-dept" placeholder="e.g. Tech, Awareness, Research"/></div>
+          <button class="auth-btn" onclick="doRegister()">Create Account &rarr;</button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -184,7 +200,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
     <button class="nl active" onclick="goPage('goals')">Goals</button>
     <button class="nl" onclick="goPage('workdone')">Work Done</button>
     <button class="nl" onclick="goPage('meetings')">Team Meetings</button>
-    <button class="nl" onclick="goPage('discussion')">Event Discussions</button>
+    <button class="nl" onclick="goPage('discussion')">Discussions</button>
     <button class="nl" onclick="goPage('contact')">Contact Us</button>
     <button class="nl" onclick="goPage('id')">My ID</button>
   </div>
@@ -202,7 +218,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
     <button class="slink" onclick="goPage('workdone')"><span class="slink-icon">✅</span>Work Done</button>
     <div class="sidebar-section">Club Activity</div>
     <button class="slink" onclick="goPage('meetings')"><span class="slink-icon">📋</span>Team Meetings</button>
-    <button class="slink" onclick="goPage('discussion')"><span class="slink-icon">💬</span>Event Discussions</button>
+    <button class="slink" onclick="goPage('discussion')"><span class="slink-icon">💬</span>Discussions</button>
     <div class="sidebar-section">Support & Profile</div>
     <button class="slink" onclick="goPage('contact')"><span class="slink-icon">📬</span>Contact Us</button>
     <button class="slink" onclick="goPage('id')"><span class="slink-icon">🪪</span>My ID Card</button>
@@ -248,7 +264,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
         <div class="month-title">August Operations</div>
         <div class="weeks-grid-layout">
           <div class="week-log-card"><div class="wlc-header">Week 1</div><div class="wlc-content">Formulated data frameworks and finalized initial region maps.</div></div>
-          <div class="week-log-card"><div class="wlc-header">Week 2</div><div class="wlc-content">Conducted preliminary screening criteria parameters across localized tracking loops.</div></div>
+          <div class="week-log-card"><div class="wlc-header">Week 2</div><div class="wlc-content">Conducted preliminary screening criteria across localized tracking loops.</div></div>
           <div class="week-log-card"><div class="wlc-header">Week 3</div><div class="wlc-content">Drafted systematic documentation review variables for administrative evaluation.</div></div>
           <div class="week-log-card"><div class="wlc-header">Week 4</div><div class="wlc-content">Completed regional asset auditing matrices. Log entries submitted.</div></div>
         </div>
@@ -290,18 +306,9 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
       </div>
       <div class="meeting-card-v2">
         <div class="m2-title">Meeting 1 <span>Date: Nov 1st</span></div>
-        <div class="m2-row">
-          <div class="m2-label">Agendas</div>
-          <div class="m2-val">Awareness drive on financial knowledge update, Tech update, etc.</div>
-        </div>
-        <div class="m2-row">
-          <div class="m2-label">Discussion</div>
-          <div class="m2-val">Deliberated on regional awareness deployment milestones, tech portal system parity, and optimizing information visibility to match organizational objectives during operational audits.</div>
-        </div>
-        <div class="m2-row">
-          <div class="m2-label">Assigned Objectives</div>
-          <div class="m2-val">Deploy verified structural templates across tracking modules, standardize local contact frameworks, and update team data boards for next review.</div>
-        </div>
+        <div class="m2-row"><div class="m2-label">Agendas</div><div class="m2-val">Awareness drive on financial knowledge update, Tech update, etc.</div></div>
+        <div class="m2-row"><div class="m2-label">Discussion</div><div class="m2-val">Deliberated on regional awareness deployment milestones, tech portal system parity, and optimizing information visibility to match organizational objectives.</div></div>
+        <div class="m2-row"><div class="m2-label">Assigned Objectives</div><div class="m2-val">Deploy verified structural templates across tracking modules, standardize local contact frameworks, and update team data boards for next review.</div></div>
       </div>
     </div>
 
@@ -315,7 +322,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
         <div class="event-header-row">
           <div>
             <div class="event-title">🚨 National Awareness &amp; Policy Drive 2026</div>
-            <div class="event-details"><span>📅 Date: June 05, 2026</span><span>📍 Location: Main Auditorium</span></div>
+            <div class="event-details"><span>📅 June 05, 2026</span><span>📍 Main Auditorium</span></div>
           </div>
           <span class="event-tag">Next Event</span>
         </div>
@@ -342,39 +349,55 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
         <input type="text" id="contact-subject" class="form-input-box" placeholder="Enter the topic or issue..."/>
         <label class="form-label">Message</label>
         <textarea id="contact-message" class="form-textarea-box" placeholder="Describe your feedback or issue..."></textarea>
-        <div id="contact-success" class="alert-success">✅ Message sent successfully! We will get back to you soon.</div>
+        <div id="contact-success" class="alert-success">✅ Message sent! We will get back to you soon.</div>
         <div id="contact-error" class="alert-error">❌ Failed to send. Please try again.</div>
         <button class="cf-btn" onclick="sendContactForm()">Send Message</button>
       </div>
     </div>
 
-    <!-- ID CARD -->
+    <!-- ID CARD — dynamically filled from logged-in user -->
     <div id="pg-id" class="page">
       <div class="page-header">
         <div class="page-title">My Member ID</div>
-        <div class="page-sub">Official identity registry credentials</div>
+        <div class="page-sub">Your official identity card — auto-filled from your profile</div>
       </div>
+
+      <!-- Profile setup banner (shown only if profile incomplete) -->
+      <div id="profile-setup-banner" class="profile-setup" style="display:none">
+        <div class="profile-setup-title">⚙️ Complete Your Profile</div>
+        <div class="profile-setup-sub">Fill in your details below to generate your ID card.</div>
+        <div class="profile-grid">
+          <div><label class="form-label">Full Name</label><input type="text" id="pf-name" class="pf-input" placeholder="Your full name"/></div>
+          <div><label class="form-label">Department</label><input type="text" id="pf-dept" class="pf-input" placeholder="Tech / Awareness / Research"/></div>
+          <div><label class="form-label">State</label><input type="text" id="pf-state" class="pf-input" placeholder="e.g. Maharashtra"/></div>
+          <div><label class="form-label">District</label><input type="text" id="pf-district" class="pf-input" placeholder="e.g. Mumbai Suburban"/></div>
+          <div><label class="form-label">City</label><input type="text" id="pf-city" class="pf-input" placeholder="e.g. Powai"/></div>
+          <div><label class="form-label">Member Since</label><input type="text" id="pf-since" class="pf-input" placeholder="e.g. Jan 2025"/></div>
+        </div>
+        <button class="pf-save-btn" onclick="saveProfile()">Save & Generate ID Card</button>
+      </div>
+
       <div style="display:flex;justify-content:center">
         <div id="id-card">
           <div class="id-org">Recovering India Foundation</div>
           <div class="id-org-full">Identity Verification Node · Student Governance Network</div>
           <div class="id-photo-row">
-            <div class="id-photo">RIF</div>
+            <div class="id-photo" id="id-initials">RIF</div>
             <div>
-              <div class="id-name">Arjun Mehta</div>
-              <div class="id-role">Department: Tech</div>
+              <div class="id-name" id="id-name">Loading...</div>
+              <div class="id-role" id="id-dept">Department: —</div>
             </div>
           </div>
           <div class="id-divider"></div>
           <div class="id-grid">
-            <div><div class="id-label">State</div><div class="id-val">Maharashtra</div></div>
-            <div><div class="id-label">District</div><div class="id-val">Mumbai Suburban</div></div>
-            <div><div class="id-label">Town / City</div><div class="id-val">Powai</div></div>
-            <div><div class="id-label">Contribution Points</div><div class="id-val" style="color:var(--accent);font-weight:600">1,450 Points</div></div>
-            <div><div class="id-label">Member Tenure</div><div class="id-val">Jan 25 - Dec 26</div></div>
+            <div><div class="id-label">State</div><div class="id-val" id="id-state">—</div></div>
+            <div><div class="id-label">District</div><div class="id-val" id="id-district">—</div></div>
+            <div><div class="id-label">City</div><div class="id-val" id="id-city">—</div></div>
+            <div><div class="id-label">Email</div><div class="id-val" id="id-email" style="font-size:11px">—</div></div>
+            <div><div class="id-label">Member Since</div><div class="id-val" id="id-since">—</div></div>
             <div><div class="id-label">Status</div><div class="id-val"><span class="id-status"><span class="id-dot"></span>ACTIVE</span></div></div>
           </div>
-          <div class="id-code"><span>ID: RIF-MEMBER-2026-892</span><span>VIT Track Node</span></div>
+          <div class="id-code"><span id="id-code-uid">ID: RIF-MEMBER-2026</span><span>RIF Portal</span></div>
         </div>
       </div>
     </div>
@@ -383,134 +406,215 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 </div>
 </div>
 
-<!-- ===== EMAILJS ===== -->
+<!-- EMAILJS -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-  emailjs.init("GjMw_dDJhLZmuG1E6");
+emailjs.init("GjMw_dDJhLZmuG1E6");
 
-  // Page navigation
-  function goPage(pageKey) {
-    document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('show'); });
-    var t = document.getElementById('pg-' + pageKey);
-    if(t) t.classList.add('show');
-    document.querySelectorAll('.nl').forEach(function(b){
-      b.classList.toggle('active', !!(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+pageKey+"'")));
-    });
-    document.querySelectorAll('.slink').forEach(function(b){
-      b.classList.toggle('active', !!(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+pageKey+"'")));
-    });
-  }
+// Tab switch
+function switchTab(tab) {
+  document.getElementById('form-login').style.display    = tab==='login'    ? 'block' : 'none';
+  document.getElementById('form-register').style.display = tab==='register' ? 'block' : 'none';
+  document.querySelectorAll('.tab-btn').forEach(function(b,i){
+    b.classList.toggle('active', (tab==='login' && i===0)||(tab==='register' && i===1));
+  });
+  clearAuthMessages();
+}
 
-  // Contact form send via EmailJS
-  function sendContactForm() {
-    var name    = document.getElementById('contact-name').value.trim()    || 'Member';
-    var subject = document.getElementById('contact-subject').value.trim();
-    var message = document.getElementById('contact-message').value.trim();
-    var success = document.getElementById('contact-success');
-    var errBox  = document.getElementById('contact-error');
-    success.style.display = 'none';
-    errBox.style.display  = 'none';
-    if(!subject || !message){ alert('Please fill in Subject and Message.'); return; }
-    emailjs.send("service_ly6qv6o", "5fjmdym", { name: name, message: subject + '\n\n' + message })
-      .then(function(){
-        success.style.display = 'block';
-        document.getElementById('contact-name').value    = '';
-        document.getElementById('contact-subject').value = '';
-        document.getElementById('contact-message').value = '';
-      })
-      .catch(function(){ errBox.style.display = 'block'; });
-  }
+function showAuthError(msg){ var b=document.getElementById('auth-error'); b.textContent=msg; b.style.display='block'; document.getElementById('auth-success').style.display='none'; }
+function showAuthSuccess(msg){ var b=document.getElementById('auth-success'); b.textContent=msg; b.style.display='block'; document.getElementById('auth-error').style.display='none'; }
+function clearAuthMessages(){ document.getElementById('auth-error').style.display='none'; document.getElementById('auth-success').style.display='none'; }
+
+// Page navigation
+function goPage(pageKey) {
+  document.querySelectorAll('.page').forEach(function(p){ p.classList.remove('show'); });
+  var t = document.getElementById('pg-' + pageKey);
+  if(t) t.classList.add('show');
+  document.querySelectorAll('.nl').forEach(function(b){
+    b.classList.toggle('active', !!(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+pageKey+"'")));
+  });
+  document.querySelectorAll('.slink').forEach(function(b){
+    b.classList.toggle('active', !!(b.getAttribute('onclick') && b.getAttribute('onclick').includes("'"+pageKey+"'")));
+  });
+}
+
+// Contact form
+function sendContactForm() {
+  var name    = document.getElementById('contact-name').value.trim()    || 'Member';
+  var subject = document.getElementById('contact-subject').value.trim();
+  var message = document.getElementById('contact-message').value.trim();
+  var success = document.getElementById('contact-success');
+  var errBox  = document.getElementById('contact-error');
+  success.style.display='none'; errBox.style.display='none';
+  if(!subject||!message){ alert('Please fill in Subject and Message.'); return; }
+  emailjs.send("service_ly6qv6o","5fjmdym",{ name:name, message:subject+'\n\n'+message })
+    .then(function(){
+      success.style.display='block';
+      document.getElementById('contact-name').value='';
+      document.getElementById('contact-subject').value='';
+      document.getElementById('contact-message').value='';
+    })
+    .catch(function(e){ console.error(e); errBox.style.display='block'; });
+}
 </script>
 
-<!-- ===== FIREBASE ===== -->
+<!-- FIREBASE -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-  import { getFirestore, collection, addDoc, getDocs, query, orderBy }
-    from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, setDoc, getDoc }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyD31ghHzXe09nKDdnSQzg3A_MbyZw5x0pA",
-    authDomain: "rif-portal.firebaseapp.com",
-    projectId: "rif-portal",
-    storageBucket: "rif-portal.firebasestorage.app",
-    messagingSenderId: "898822608497",
-    appId: "1:898822608497:web:d0b64b7c2dc93c6772edd0"
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyD31ghHzXe09nKDdnSQzg3A_MbyZw5x0pA",
+  authDomain: "rif-portal.firebaseapp.com",
+  projectId: "rif-portal",
+  storageBucket: "rif-portal.firebasestorage.app",
+  messagingSenderId: "898822608497",
+  appId: "1:898822608497:web:d0b64b7c2dc93c6772edd0"
+};
 
-  const app  = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const db   = getFirestore(app);
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
 
-  window.doLogin = async function() {
-    var email    = document.getElementById('login-email').value.trim();
-    var password = document.getElementById('login-password').value;
-    var errBox   = document.getElementById('login-error');
-    errBox.style.display = 'none';
-    if(!email || !password){ errBox.textContent='Please enter email and password.'; errBox.style.display='block'; return; }
-    try {
-      var result = await signInWithEmailAndPassword(auth, email, password);
-      document.getElementById('nav-email').textContent  = result.user.email;
-      document.getElementById('nav-avatar').textContent = result.user.email[0].toUpperCase();
-      document.getElementById('login-page').style.display = 'none';
-      document.getElementById('main-app').style.display   = 'block';
-      goPage('goals');
-      loadPosts();
-    } catch(e) {
-      errBox.textContent = 'Invalid email or password. Please try again.';
-      errBox.style.display = 'block';
-    }
-  };
+// ---- LOGIN ----
+window.doLogin = async function() {
+  var email    = document.getElementById('login-email').value.trim();
+  var password = document.getElementById('login-password').value;
+  if(!email||!password){ showAuthError('Please enter email and password.'); return; }
+  try {
+    var result = await signInWithEmailAndPassword(auth, email, password);
+    enterApp(result.user);
+  } catch(e) { showAuthError('Invalid email or password. Please try again.'); }
+};
 
-  window.doLogout = async function() {
-    await signOut(auth);
-    document.getElementById('main-app').style.display   = 'none';
-    document.getElementById('login-page').style.display = 'flex';
-  };
-
-  window.submitPost = async function() {
-    var txt  = document.getElementById('np-text-field').value.trim();
-    var user = auth.currentUser;
-    if(!txt || !user) return;
-    await addDoc(collection(db, 'posts'), { text: txt, author: user.email, time: new Date().toISOString() });
-    document.getElementById('np-text-field').value = '';
-    loadPosts();
-  };
-
-  async function loadPosts() {
-    var feed = document.getElementById('discussion-feed');
-    if(!feed) return;
-    try {
-      var q        = query(collection(db, 'posts'), orderBy('time', 'desc'));
-      var snapshot = await getDocs(q);
-      feed.innerHTML = '';
-      if(snapshot.empty){ feed.innerHTML='<p style="color:var(--muted);font-size:13px;padding:12px">No posts yet. Be the first to comment!</p>'; return; }
-      snapshot.forEach(function(doc){
-        var d    = doc.data();
-        var post = document.createElement('div');
-        post.className = 'disc-post';
-        post.innerHTML =
-          '<div class="disc-post-top">' +
-          '<div class="disc-avt" style="background:#1a2a4a;color:#fff">' + d.author[0].toUpperCase() + '</div>' +
-          '<div class="disc-post-body">' +
-          '<div class="disc-post-header"><span class="disc-author">' + d.author + '</span><span class="disc-time">' + new Date(d.time).toLocaleDateString('en-IN') + '</span></div>' +
-          '<div class="disc-post-text">' + d.text + '</div>' +
-          '</div></div>';
-        feed.appendChild(post);
-      });
-    } catch(e){ feed.innerHTML='<p style="color:var(--muted);font-size:13px;padding:12px">Could not load posts.</p>'; }
+// ---- REGISTER ----
+window.doRegister = async function() {
+  var name     = document.getElementById('reg-name').value.trim();
+  var email    = document.getElementById('reg-email').value.trim();
+  var password = document.getElementById('reg-password').value;
+  var dept     = document.getElementById('reg-dept').value.trim();
+  if(!name||!email||!password){ showAuthError('Please fill all required fields.'); return; }
+  if(password.length < 6){ showAuthError('Password must be at least 6 characters.'); return; }
+  try {
+    var result = await createUserWithEmailAndPassword(auth, email, password);
+    await updateProfile(result.user, { displayName: name });
+    // Save profile to Firestore
+    await setDoc(doc(db,'members', result.user.uid), {
+      name: name, email: email, dept: dept||'Member',
+      state:'—', district:'—', city:'—',
+      since: new Date().toLocaleDateString('en-IN',{month:'short',year:'numeric'}),
+      uid: result.user.uid,
+      joined: new Date().toISOString()
+    });
+    showAuthSuccess('Account created! Signing you in...');
+    setTimeout(function(){ enterApp(result.user); }, 1000);
+  } catch(e) {
+    if(e.code==='auth/email-already-in-use') showAuthError('This email is already registered. Please sign in.');
+    else showAuthError('Registration failed: ' + e.message);
   }
+};
 
-  onAuthStateChanged(auth, function(user){
-    if(user){
-      document.getElementById('nav-email').textContent  = user.email;
-      document.getElementById('nav-avatar').textContent = user.email[0].toUpperCase();
-      document.getElementById('login-page').style.display = 'none';
-      document.getElementById('main-app').style.display   = 'block';
-      loadPosts();
-    }
-  });
+// ---- ENTER APP ----
+function enterApp(user) {
+  document.getElementById('nav-email').textContent  = user.displayName || user.email;
+  document.getElementById('nav-avatar').textContent = (user.displayName || user.email)[0].toUpperCase();
+  document.getElementById('login-page').style.display = 'none';
+  document.getElementById('main-app').style.display   = 'block';
+  goPage('goals');
+  loadPosts();
+  loadProfile(user);
+}
+
+// ---- LOGOUT ----
+window.doLogout = async function() {
+  await signOut(auth);
+  document.getElementById('main-app').style.display   = 'none';
+  document.getElementById('login-page').style.display = 'flex';
+};
+
+// ---- LOAD PROFILE & FILL ID CARD ----
+async function loadProfile(user) {
+  try {
+    var snap = await getDoc(doc(db,'members', user.uid));
+    var data = snap.exists() ? snap.data() : {};
+    var name = data.name || user.displayName || user.email;
+    var initials = name.split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2);
+
+    document.getElementById('id-initials').textContent = initials;
+    document.getElementById('id-name').textContent     = name;
+    document.getElementById('id-dept').textContent     = 'Department: ' + (data.dept||'—');
+    document.getElementById('id-state').textContent    = data.state    || '—';
+    document.getElementById('id-district').textContent = data.district || '—';
+    document.getElementById('id-city').textContent     = data.city     || '—';
+    document.getElementById('id-email').textContent    = user.email;
+    document.getElementById('id-since').textContent    = data.since    || '—';
+    document.getElementById('id-code-uid').textContent = 'ID: RIF-' + user.uid.slice(0,8).toUpperCase();
+
+    // Show profile setup banner if details are missing
+    var incomplete = !data.state || data.state==='—' || !data.city || data.city==='—';
+    document.getElementById('profile-setup-banner').style.display = incomplete ? 'block' : 'none';
+    if(data.name)  document.getElementById('pf-name').value    = data.name;
+    if(data.dept)  document.getElementById('pf-dept').value    = data.dept;
+    if(data.state) document.getElementById('pf-state').value   = data.state!=='—'?data.state:'';
+    if(data.district) document.getElementById('pf-district').value = data.district!=='—'?data.district:'';
+    if(data.city)  document.getElementById('pf-city').value    = data.city!=='—'?data.city:'';
+    if(data.since) document.getElementById('pf-since').value   = data.since;
+  } catch(e) { console.error('Profile load error:', e); }
+}
+
+// ---- SAVE PROFILE ----
+window.saveProfile = async function() {
+  var user = auth.currentUser;
+  if(!user) return;
+  var data = {
+    name:     document.getElementById('pf-name').value.trim(),
+    dept:     document.getElementById('pf-dept').value.trim(),
+    state:    document.getElementById('pf-state').value.trim(),
+    district: document.getElementById('pf-district').value.trim(),
+    city:     document.getElementById('pf-city').value.trim(),
+    since:    document.getElementById('pf-since').value.trim(),
+    email:    user.email, uid: user.uid
+  };
+  await setDoc(doc(db,'members',user.uid), data, {merge:true});
+  alert('Profile saved! Your ID card has been updated.');
+  loadProfile(user);
+};
+
+// ---- DISCUSSION POSTS ----
+window.submitPost = async function() {
+  var txt  = document.getElementById('np-text-field').value.trim();
+  var user = auth.currentUser;
+  if(!txt||!user) return;
+  await addDoc(collection(db,'posts'),{ text:txt, author:user.displayName||user.email, time:new Date().toISOString() });
+  document.getElementById('np-text-field').value='';
+  loadPosts();
+};
+
+async function loadPosts() {
+  var feed = document.getElementById('discussion-feed');
+  if(!feed) return;
+  try {
+    var q        = query(collection(db,'posts'), orderBy('time','desc'));
+    var snapshot = await getDocs(q);
+    feed.innerHTML='';
+    if(snapshot.empty){ feed.innerHTML='<p style="color:var(--muted);font-size:13px;padding:12px">No posts yet. Be the first to comment!</p>'; return; }
+    snapshot.forEach(function(d){
+      var data=d.data();
+      var post=document.createElement('div');
+      post.className='disc-post';
+      post.innerHTML='<div class="disc-post-top"><div class="disc-avt" style="background:#1a2a4a;color:#fff">'+data.author[0].toUpperCase()+'</div><div class="disc-post-body"><div class="disc-post-header"><span class="disc-author">'+data.author+'</span><span class="disc-time">'+new Date(data.time).toLocaleDateString('en-IN')+'</span></div><div class="disc-post-text">'+data.text+'</div></div></div>';
+      feed.appendChild(post);
+    });
+  } catch(e){ feed.innerHTML='<p style="color:var(--muted);font-size:13px;padding:12px">Could not load posts.</p>'; }
+}
+
+// ---- AUTO LOGIN on refresh ----
+onAuthStateChanged(auth, function(user){
+  if(user){ enterApp(user); }
+});
 </script>
 </body>
 </html>
